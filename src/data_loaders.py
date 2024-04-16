@@ -79,8 +79,9 @@ class JigsawDataOriginal(JigsawData):
         test_csv_file="jigsaw_data/test.csv",
         train=True,
         add_test_labels=True,
-        classes=["toxic"],
+        classes=None,
     ):
+        classes = ["toxic"] if classes is None else classes
 
         super().__init__(
             train_csv_file=train_csv_file,
@@ -116,10 +117,12 @@ class JigsawDataBias(JigsawData):
         train=True,
         compute_bias_weights=True,
         loss_weight=0.75,
-        classes=["toxic"],
-        identity_classes=["female"],
+        classes=None,
+        identity_classes=None,
         soft_labels=False,
     ):
+        classes = ["toxic"] if classes is None else classes
+        identity_classes = ["female"] if identity_classes is None else identity_classes
 
         self.classes = classes
         self.soft_labels = soft_labels
@@ -193,8 +196,9 @@ class JigsawDataMultilingual(JigsawData):
         train_csv_file="jigsaw_data/multilingual_challenge/jigsaw-toxic-comment-train.csv",
         test_csv_file="jigsaw_data/multilingual_challenge/validation.csv",
         train=True,
-        classes=["toxic"],
+        classes=None,
     ):
+        classes = ["toxic"] if classes is None else classes
 
         self.classes = classes
         super().__init__(train_csv_file=train_csv_file, test_csv_file=test_csv_file, train=train)
